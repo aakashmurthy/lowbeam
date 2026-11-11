@@ -164,7 +164,8 @@ final class ScriptStore: ObservableObject {
     }
 
     private func looksLikeJSON(_ data: Data) -> Bool {
-        guard let first = data.first(where: { !$0.isWhitespace }) else { return false }
+        guard let index = data.firstIndex(where: { !$0.isWhitespace }) else { return false }
+        let first = data[index]
         return first == UInt8(ascii: "{") || first == UInt8(ascii: "[")
     }
 

@@ -25,7 +25,7 @@ enum PackCrypto {
         let nonce = try AES.GCM.Nonce(data: raw.prefix(12))
         let tag = raw[12..<28]
         let ciphertext = raw.dropFirst(28)
-        let box = try AES.GCM.SealedBox(nonce: nonce, tag: tag, ciphertext: ciphertext)
+        let box = try AES.GCM.SealedBox(nonce: nonce, ciphertext: ciphertext, tag: tag)
         return try AES.GCM.open(box, using: key)
     }
 }
