@@ -1,0 +1,38 @@
+name: LowBeam
+options:
+  bundleIdPrefix: dev.lowbeam
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+targets:
+  LowBeam:
+    type: application
+    platform: iOS
+    sources:
+      - path: LowBeam
+      - path: ../data
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.lowbeam.app
+        PRODUCT_NAME: LowBeam
+        INFOPLIST_FILE: LowBeam/Info.plist
+        GENERATE_INFOPLIST_FILE: "NO"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        CODE_SIGNING_ALLOWED: "NO"
+        CODE_SIGNING_REQUIRED: "NO"
+        CODE_SIGN_IDENTITY: ""
+schemes:
+  LowBeam:
+    build:
+      targets:
+        LowBeam: all
+    run:
+      config: Debug
+    archive:
+      config: Release
