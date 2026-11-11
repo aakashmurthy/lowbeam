@@ -1,5 +1,8 @@
 # LowBeam — open diagnostic packs and a reference UDS engine
 
+[![Python CI](https://github.com/aakashmurthy/lowbeam/actions/workflows/ci.yml/badge.svg)](https://github.com/aakashmurthy/lowbeam/actions/workflows/ci.yml)
+[![iOS build](https://github.com/aakashmurthy/lowbeam/actions/workflows/ios.yml/badge.svg)](https://github.com/aakashmurthy/lowbeam/actions/workflows/ios.yml)
+
 This repository is a clean-room, source-available reconstruction of the data
 layer shipped inside the iOS app **BimmerLight 3.9** (bundle
 `com.bimmerlight.prod`).  It contains:
@@ -73,7 +76,10 @@ open LowBeam.xcodeproj
 ```
 
 CI builds an unsigned `.ipa` and `.tipa` on every push to `main` and attaches
-both to a GitHub release for `v*` tags.  See [ios/README.md](ios/README.md).
+both to a GitHub release for `v*` tags.  The current build is
+[LowBeam v0.1.0](https://github.com/aakashmurthy/lowbeam/releases/tag/v0.1.0);
+it is unsigned, so installing it on a device requires re-signing.  See
+[ios/README.md](ios/README.md).
 
 ## What is verified
 
@@ -83,6 +89,9 @@ both to a GitHub release for `v*` tags.  See [ios/README.md](ios/README.md).
   four FRM3 channels (`BL_L_2`, `BL_R_2`, `ABBL_L`, `ABBL_R`) that are
   referenced by the action map but missing from the shipped light map.
   See `docs/03-uds-engine.md`.
+* The Swift encoder in `ios/` reproduces all 1548 Python encodings
+  byte-for-byte.
+* The unsigned iOS app builds successfully on the macOS CI runner.
 
 ## Documentation
 
