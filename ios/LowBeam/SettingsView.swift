@@ -10,6 +10,10 @@ struct SettingsView: View {
 
     private let repository = URL(string: "https://github.com/aakashmurthy/lowbeam")!
 
+    private var appVersion: String {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "0.2.0"
+    }
+
     var body: some View {
         NavigationStack {
             List {
@@ -87,7 +91,7 @@ struct SettingsView: View {
 
     private var aboutSection: some View {
         Section {
-            LabeledContent("Version", value: "0.1.0")
+            LabeledContent("Version", value: appVersion)
             LabeledContent("Pack data", value: "BimmerLight 3.9")
             Link(destination: repository) {
                 Label("Source code", systemImage: "chevron.left.forwardslash.chevron.right")

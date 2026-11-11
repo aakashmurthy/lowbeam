@@ -91,7 +91,7 @@ open LowBeam.xcodeproj
 
 CI builds an unsigned `.ipa` and `.tipa` on every push to `main` and attaches
 both to a GitHub release for `v*` tags.  The current build is
-[LowBeam v0.1.0](https://github.com/aakashmurthy/lowbeam/releases/tag/v0.1.0);
+[LowBeam v0.2.0](https://github.com/aakashmurthy/lowbeam/releases/tag/v0.2.0);
 it is unsigned, so installing it on a device requires re-signing.  See
 [ios/README.md](ios/README.md).
 
