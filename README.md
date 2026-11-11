@@ -57,16 +57,30 @@ print(encode_action(bundle, "STEUERN_LEUCHTENAUSGANG_DIGITAL", ["SL_L", "1"]).he
 | `data/packs/*.json` | 9 light-show scripts (`flash`, `ghost`, `party_mode`, …) |
 | `data/information/` | `chassis_info` (5894), `ecu_modules` (439), `salapa_info` (5614) |
 | `lowbeam/` | reference implementation (crypto, model, encoder, framing, CLI) |
-| `ios/` | offline SwiftUI pack browser/encoder (XcodeGen project) |
+| `ios/` | LowBeam SwiftUI app: connect screen, light-show runner, script builder (XcodeGen project) |
 | `tools/` | helper scripts used during the reconstruction |
 | `tests/` | contract examples plus a sweep over all 1554 actions |
 | `samples/` | one original encrypted `.bimmerlight` file for crypto tests |
 
 ## iOS app
 
-`ios/` contains **LowBeam**, a small offline SwiftUI app that browses the bundled
-packs and shows the encoded request (and Ediabas frame) for any action.  It does
-not connect to a car, a server, or an account.
+`ios/` contains **LowBeam**, a SwiftUI app that mirrors the original BimmerLight
+workflow without a paywall or account:
+
+* **Garage** — connect to a demo vehicle or, experimentally, an ENET/Wi-Fi OBD
+  adapter over TCP. The connect screen stages adapter → vehicle → gateway →
+  modules and shows the detected VIN, chassis, and module list.
+* **Scripts** — play the nine built-in light shows, or open any action to inspect
+  its sequence and cleanup steps. The runner resolves each step against the
+  detected modules, encodes it, frames it, and sends it; cleanup always runs when
+  a show stops or finishes.
+* **Build** — compose custom packs from the full 1,554-action database, edit
+  steps and parameters, then export an encrypted `.bimmerlight` file.
+* **Settings** — adapter defaults, library counts, and onboarding reset.
+
+Bluetooth adapters are shown for reference but this build only implements the
+HSFZ/TCP transport. The demo works entirely offline. No server, subscription,
+or account is used.
 
 ```bash
 cd ios
